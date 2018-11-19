@@ -1,7 +1,7 @@
 ---
 title: "NEPTUNE analysis"
 author: "Laura Pyle"
-date: "October 3, 2018"
+date: "November 19, 2018"
 output: word_document
 
 ---
@@ -16,13 +16,15 @@ library(lubridate)
 library(zoo) 
 library(M3)
 library(data.table)
-library(Table1)
-library(devtools)
+#library(Table1)
+#library(devtools)
 library(Hmisc)
 library(knitr)
 #library(kableExtra)
 library(psycho)
 #library(tidyverse)
+
+source("C:\\Users\\pylell\\Documents\\GitHub\\General-code\\temp_table1.r")
 
 ####################################################################################################
 #Data Manipulation #
@@ -63,7 +65,8 @@ final <- final[final$DM_FU != "1: Yes" & final$PAT_DMatBL != "1: Yes",]
 
 # use only baseline visits.  mRNA data come from biopsy visit, but those data are included in the 
 # baseline record also
-final <- final[final$visitnum=='2: V02- Baseline',]
+#final <- final[final$visitnum=='2: V02- Baseline',]
+final <- filter(final,final$visitnum=='2: V02- Baseline')
 
 # looking at race
 # RaceBlack is yes for some multiracial, also all Black/African American
@@ -236,7 +239,7 @@ tab1a <- final_table(final_ped,c("PAT_Agev2","PAT_Sex","BMI","Weight","Height","
                                 "HTNStatus","PAT_DMatBL","DM_FU","PAT_HFatBL","HF","HA_FU","TE_FU","PAT_CanceratBL","Cancer_FU","Sodium",
                                 "Potassium","CO2","UreaNitrogen","Glucose","Albumin","Calcium","Phosphorus","Magnesium","SteroidsPre","ACEARBPre",
                                 "CNIpre","CTXPre","MMFpre","ImmunosupressionV","SteroidV","CTXV","CNIV","RituxV","MMFV","OtherIStV",
-                                "RAASblockV","DiureticV"),
+                                "RAASblockV","DiureticV","interstitialfibrosis"),
                     group=final_ped$PAT_Cohort,margin=2,single=0,ron=1)
                            
 # Adult descriptive table, by DX group
@@ -245,7 +248,7 @@ tab1b <- final_table(final_adult,c("PAT_Agev2","PAT_Sex","BMI","Weight","Height"
                                 "HTNStatus","PAT_DMatBL","DM_FU","PAT_HFatBL","HF","HA_FU","TE_FU","PAT_CanceratBL","Cancer_FU","A1c","Sodium",
                                 "Potassium","CO2","UreaNitrogen","Glucose","Albumin","Calcium","Phosphorus","Magnesium","SteroidsPre","ACEARBPre",
                                 "CNIpre","CTXPre","MMFpre","ImmunosupressionV","SteroidV","CTXV","CNIV","RituxV","MMFV","OtherIStV",
-                                "RAASblockV","DiureticV"),
+                                "RAASblockV","DiureticV","interstitialfibrosis"),
                     group=final_adult$PAT_Cohort,margin=2,single=0,ron=1)
 
 

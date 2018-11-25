@@ -231,6 +231,10 @@ final_adult <- final[final$PAT_Ped=="0: No",]
 Npeds <- nrow(distinct(final_ped,SGLTID))
 Nadult <- nrow(distinct(final_adult,SGLTID))
 
+#write.csv(final,file="H:\\Endocrinology\\Bjornstad\\NEPTUNE\\Data\\final_NEPTUNE_data.csv")
+#write.csv(final_ped,file="H:\\Endocrinology\\Bjornstad\\NEPTUNE\\Data\\final_NEPTUNE_data_peds.csv")
+#write.csv(final_adult,file="H:\\Endocrinology\\Bjornstad\\NEPTUNE\\Data\\final_NEPTUNE_data_adult.csv")
+
 # NOTE: A1c left out of peds table because only one non-missing value
 
 # Peds descriptive table, by Dx group

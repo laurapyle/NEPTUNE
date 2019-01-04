@@ -21,7 +21,7 @@ library(data.table)
 library(Hmisc)
 library(knitr)
 #library(kableExtra)
-library(psycho)
+#library(psycho)
 #library(tidyverse)
 
 source("C:\\Users\\pylell\\Documents\\GitHub\\General-code\\temp_table1.r")
@@ -30,7 +30,8 @@ source("C:\\Users\\pylell\\Documents\\GitHub\\General-code\\temp_table1.r")
 #Data Manipulation #
 ####################################################################################################
 
-setwd("H:\\Endocrinology\\Bjornstad\\NEPTUNE\\Data")
+#setwd("H:\\Endocrinology\\Bjornstad\\NEPTUNE\\Data")
+setwd("C:\\Montana car\\NEPTUNE\\Data")
 nameFile <- ".\\Copy of NEPTUNE SGLT Ancillary Data  Export 11MAY2018_working_locked.csv"
 
 # read the data
@@ -149,7 +150,10 @@ final$Calcium <- as.numeric(as.character(final$Calcium))
 final$Phosphorus <- as.numeric(as.character(final$Phosphorus))
 final$Magnesium <- as.numeric(as.character(final$Magnesium))
 
-
+# added 1/4/19 - exclude those with missing RNA expression data
+final <- final[!is.na(final$SGLT2_TI) | !is.na(final$SGLT1_GLOM) | !is.na(final$SGLT1_TI) |
+                 !is.na(final$SGLT2_GLOM),]
+#View(final[c("SGLT2_TI","SGLT1_TI","SGLT1_GLOM","SGLT2_GLOM")])
 
 ####################################################################################################
 # Descriptive Tables #
